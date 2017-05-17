@@ -4,6 +4,7 @@ import (
 	"html/template"
 	"io/ioutil"
 	"os"
+	"path"
 	"path/filepath"
 
 	log "github.com/Sirupsen/logrus"
@@ -16,52 +17,56 @@ type Render map[string]*template.Template
 var _ render.HTMLRender = Render{}
 
 // OpenRender load tempaltes
-func OpenRender(r string, m template.FuncMap) (Render, error) {
+func OpenRender(root string, funcs template.FuncMap) (Render, error) {
 	rdr := make(Render)
-	layouts, err := ioutil.ReadDir(r)
+	const ext = ".html"
+	// ---------------
+	includes, err := filepath.Glob(path.Join(root, "includes", "*"+ext))
 	if err != nil {
 		return nil, err
 	}
+	// -----------------
+	layouts, err := filepath.Glob(path.Join(root, "layouts", "*"+ext))
+	if err != nil {
+		return nil, err
+	}
+	for _, layout := range layouts {
+		lyn := filepath.Base(layout)
+		lyn = lyn[:len(lyn)-len(ext)]
+		lyr := path.Join(root, "views", lyn)
 
-	const layout = "layout.html"
-	const ext = ".html"
+		if err := filepath.Walk(lyr, func(path string, info os.FileInfo, err error) error {
+			if err != nil {
+				return err
+			}
+			if info.IsDir() || filepath.Ext(info.Name()) != ext {
+				return nil
+			}
 
-	for _, lyt := range layouts {
-		if lyt.IsDir() {
-			root := filepath.Join(r, lyt.Name())
-			if err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
+			name := path[len(lyr)+1 : len(path)-len(ext)]
+			tpl := template.
+				New(name).
+				Funcs(funcs)
+
+			files := append(includes, layout, path)
+			log.Debugln("find view", name, "with files", files)
+			for _, n := range files {
+				buf, err := ioutil.ReadFile(n)
 				if err != nil {
 					return err
 				}
-				fn := info.Name()
-				if info.IsDir() || filepath.Ext(fn) != ext || fn == layout {
-					return nil
+				tpl, err = tpl.Parse(string(buf))
+				if err != nil {
+					return err
 				}
-
-				name := path[len(root)+1 : len(path)-len(ext)]
-				tpl := template.
-					New(name).
-					Funcs(m)
-				for _, n := range []string{filepath.Join(root, layout), path} {
-					buf, err := ioutil.ReadFile(n)
-					if err != nil {
-						return err
-					}
-					tpl, err = tpl.Parse(string(buf))
-					if err != nil {
-						return err
-					}
-				}
-
-				log.Debugln("find view", name, "with layout", lyt.Name())
-				rdr[name] = tpl
-				return nil
-			}); err != nil {
-				return nil, err
 			}
+			rdr[name] = tpl
+			return nil
+		}); err != nil {
+			return nil, err
 		}
-
 	}
+
 	return rdr, nil
 }
 

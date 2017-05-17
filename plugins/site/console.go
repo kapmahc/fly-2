@@ -609,7 +609,7 @@ func (p *Plugin) runServer(c *cli.Context, _ *inject.Graph) error {
 	// --------------------
 	theme := viper.GetString("server.theme")
 	// --------------------
-	rdr, err := web.OpenRender(path.Join("themes", theme, "views"), p.htmlFuncMap())
+	rdr, err := web.OpenRender(path.Join("themes", theme), p.htmlFuncMap())
 	if err != nil {
 		return err
 	}
