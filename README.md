@@ -6,6 +6,8 @@ A complete open source e-commerce solution for the Go language(STILL IN DEVELOPM
 
 ```bash
 go get -u github.com/kapmahc/fly
+cd $GOPATH/src/github.com/kapmahc/fly
+make init
 make
 ```
 

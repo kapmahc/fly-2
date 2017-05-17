@@ -6,6 +6,9 @@
 # test
 /tmp
 
+# Go
+/vendor/*/
+
 # npm
 /node_modules
 npm-debug.log
