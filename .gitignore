@@ -1,0 +1,16 @@
+# Go
+/vendor/*/
+
+# Build
+/build
+/dist.tar.bz2
+
+# Editor
+.*.swp
+.*.un~
+
+# Test
+/etc
+/tmp
+/config.toml
+/public
