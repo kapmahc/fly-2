@@ -1,0 +1,15 @@
+
+# build
+/dist
+/dist.tar.bz2
+
+# test
+/tmp
+
+# npm
+/node_modules
+npm-debug.log
+
+# vim
+.*.swp
+.*.un~
