@@ -13,7 +13,7 @@ import (
 type Plugin interface {
 	Init()
 	Mount(*gin.Engine)
-	Layout(*gin.Context) gin.H
+	Dashboard(*gin.Context) Dropdown
 	Open(*inject.Graph) error
 	Console() []cli.Command
 	Atom(lang string) ([]*atom.Entry, error)

@@ -5,6 +5,7 @@
 
 # test
 /tmp
+/config.toml
 
 # Go
 /vendor/*/

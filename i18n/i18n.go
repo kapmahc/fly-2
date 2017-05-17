@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"html/template"
+	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
@@ -39,6 +40,9 @@ func (p *I18n) F(lang, code string, obj interface{}) (string, error) {
 
 //E create an i18n error
 func (p *I18n) E(status int, lang, code string, args ...interface{}) error {
+	if status == 0 {
+		status = http.StatusInternalServerError
+	}
 	return &web.HTTPError{
 		Message: p.T(lang, code, args...),
 		Status:  status,

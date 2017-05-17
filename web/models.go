@@ -1,6 +1,10 @@
 package web
 
-import "time"
+import (
+	"time"
+
+	"github.com/gin-gonic/gin"
+)
 
 const (
 	// TypeMARKDOWN markdown format
@@ -26,4 +30,25 @@ type Media struct {
 	Model
 	Body string `json:"body"`
 	Type string `json:"type"`
+}
+
+// NewDropdown new dropdown
+func NewDropdown(label, icon string, items ...Link) Dropdown {
+	return Dropdown{"label": label, "icon": icon, "items": items}
+}
+
+// Dropdown dropdown
+type Dropdown gin.H
+
+// Append append items
+func (p Dropdown) Append(items ...Link) {
+	p["items"] = append(p["items"].([]Link), items...)
+}
+
+// Link link
+type Link gin.H
+
+// NewLink new link
+func NewLink(label, href string) Link {
+	return Link{"label": label, "href": href}
 }
