@@ -8,19 +8,10 @@ import (
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/gin-gonic/gin"
-	"github.com/unrolled/render"
-)
-
-const (
-	// LayoutApplication application
-	LayoutApplication = "layouts/application"
-	// LayoutDashboard dashboard
-	LayoutDashboard = "layouts/dashboard"
 )
 
 // Wrapper wrapper
 type Wrapper struct {
-	Render *render.Render `inject:""`
 }
 
 // Text render text template
@@ -41,7 +32,8 @@ func (p *Wrapper) Handle(f func(*gin.Context) error) gin.HandlerFunc {
 			if he, ok := e.(*HTTPError); ok {
 				s = he.Status
 			}
-			p.Render.JSON(c.Writer, s, e.Error())
+			c.String(s, e.Error())
+			c.Abort()
 		}
 	}
 }
@@ -81,14 +73,15 @@ func (p *Wrapper) Form(o interface{}, f func(*gin.Context, interface{}) error) g
 // }
 
 // HTML render html
-func (p *Wrapper) HTML(l, t string, f func(*gin.Context, gin.H) error) gin.HandlerFunc {
+func (p *Wrapper) HTML(n string, f func(*gin.Context, gin.H) error) gin.HandlerFunc {
 	return p.Handle(func(c *gin.Context) error {
 		v := gin.H{}
 		if e := f(c, v); e != nil {
 			return e
 		}
 		v["ctx"] = c.Keys
-		p.Render.HTML(c.Writer, http.StatusOK, t, v, render.HTMLOptions{Layout: l})
+		c.HTML(http.StatusOK, n, v)
 		return nil
+
 	})
 }

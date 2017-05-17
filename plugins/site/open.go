@@ -23,7 +23,6 @@ import (
 	"github.com/kapmahc/fly/uploader/fs"
 	"github.com/kapmahc/fly/web"
 	"github.com/spf13/viper"
-	"github.com/unrolled/render"
 )
 
 type gormLogger struct {
@@ -45,8 +44,7 @@ func (p *Plugin) Open(g *inject.Graph) error {
 	if err != nil {
 		return err
 	}
-	// --------------------
-	theme := viper.GetString("server.theme")
+
 	// -------------------
 	up, err := fs.NewStore(
 		path.Join("tmp", "attachments"),
@@ -66,7 +64,6 @@ func (p *Plugin) Open(g *inject.Graph) error {
 		&inject.Object{Value: db},
 		&inject.Object{Value: p.openRedis()},
 		&inject.Object{Value: up},
-		&inject.Object{Value: p.openRender(theme)},
 
 		&inject.Object{Value: &redis.Store{}},
 		&inject.Object{Value: rabbitmq.New(
@@ -129,8 +126,8 @@ func (p *Plugin) openRedis() *_redis.Pool {
 	}
 }
 
-func (p *Plugin) openRender(theme string) *render.Render {
-	funcs := template.FuncMap{
+func (p *Plugin) htmlFuncMap() template.FuncMap {
+	return template.FuncMap{
 		"t": p.I18n.T,
 		"tn": func(v interface{}) string {
 			return reflect.TypeOf(v).String()
@@ -222,11 +219,4 @@ func (p *Plugin) openRender(theme string) *render.Render {
 			return strings.HasPrefix(s, b)
 		},
 	}
-
-	return render.New(render.Options{
-		Directory:     path.Join("themes", theme, "views"),
-		Extensions:    []string{".html"},
-		Funcs:         []template.FuncMap{funcs},
-		IsDevelopment: !web.IsProduction(),
-	})
 }

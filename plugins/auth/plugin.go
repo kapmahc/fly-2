@@ -24,6 +24,7 @@ type Plugin struct {
 	Server   *job.Server        `inject:""`
 	Hmac     *security.Hmac     `inject:""`
 	Uploader uploader.Store     `inject:""`
+	Wrapper  *web.Wrapper       `inject:""`
 }
 
 // Init load config

@@ -26,6 +26,7 @@ type Plugin struct {
 	Settings *settings.Settings `inject:""`
 	Server   *job.Server        `inject:""`
 	Cache    *cache.Cache       `inject:""`
+	Wrapper  *web.Wrapper       `inject:""`
 }
 
 // Init load config

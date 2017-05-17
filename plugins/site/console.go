@@ -607,9 +607,17 @@ func (p *Plugin) runServer(c *cli.Context, _ *inject.Graph) error {
 	}
 	rt := gin.Default()
 	// --------------------
+	theme := viper.GetString("server.theme")
+	// --------------------
+	rdr, err := web.OpenRender(path.Join("themes", theme, "views"), p.htmlFuncMap())
+	if err != nil {
+		return err
+	}
+	rt.HTMLRender = rdr
+	// --------------------
 	rt.Static("/3rd", "node_modules")
 	rt.Static("/upload", path.Join("tmp", "attachments"))
-	rt.Static("/assets", path.Join("themes", viper.GetString("theme"), "assets"))
+	rt.Static("/assets", path.Join("themes", theme, "assets"))
 	// --------------------
 	lm, err := p.I18n.Middleware()
 	if err != nil {
