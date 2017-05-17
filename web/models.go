@@ -27,15 +27,3 @@ type Media struct {
 	Body string `json:"body"`
 	Type string `json:"type"`
 }
-
-// Dropdown dropdown
-type Dropdown struct {
-	Label string
-	Items []*Link
-}
-
-// Link link
-type Link struct {
-	Label string
-	Href  string
-}
