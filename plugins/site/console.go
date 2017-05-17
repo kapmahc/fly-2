@@ -607,6 +607,10 @@ func (p *Plugin) runServer(c *cli.Context, _ *inject.Graph) error {
 	}
 	rt := gin.Default()
 	// --------------------
+	rt.Static("/3rd", "node_modules")
+	rt.Static("/upload", path.Join("tmp", "attachments"))
+	rt.Static("/assets", path.Join("themes", viper.GetString("theme"), "assets"))
+	// --------------------
 	lm, err := p.I18n.Middleware()
 	if err != nil {
 		return err

@@ -11,6 +11,13 @@ import (
 	"github.com/unrolled/render"
 )
 
+const (
+	// LayoutApplication application
+	LayoutApplication = "layouts/application"
+	// LayoutDashboard dashboard
+	LayoutDashboard = "layouts/dashboard"
+)
+
 // Wrapper wrapper
 type Wrapper struct {
 	Render *render.Render `inject:""`
@@ -74,14 +81,14 @@ func (p *Wrapper) Form(o interface{}, f func(*gin.Context, interface{}) error) g
 // }
 
 // HTML render html
-func (p *Wrapper) HTML(t string, f func(*gin.Context, gin.H) error) gin.HandlerFunc {
+func (p *Wrapper) HTML(l, t string, f func(*gin.Context, gin.H) error) gin.HandlerFunc {
 	return p.Handle(func(c *gin.Context) error {
 		v := gin.H{}
 		if e := f(c, v); e != nil {
 			return e
 		}
 		v["ctx"] = c.Keys
-		p.Render.HTML(c.Writer, http.StatusOK, t, v)
+		p.Render.HTML(c.Writer, http.StatusOK, t, v, render.HTMLOptions{Layout: l})
 		return nil
 	})
 }

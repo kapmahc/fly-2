@@ -2,13 +2,19 @@ package site
 
 import (
 	"crypto/aes"
+	"errors"
 	"fmt"
+	"html/template"
+	"path"
+	"reflect"
+	"strings"
 	"time"
 
 	"github.com/SermoDigital/jose/crypto"
 	log "github.com/Sirupsen/logrus"
 	"github.com/facebookgo/inject"
 	_redis "github.com/garyburd/redigo/redis"
+	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	"github.com/kapmahc/fly/cache/redis"
 	i_orm "github.com/kapmahc/fly/i18n/orm"
@@ -17,6 +23,7 @@ import (
 	"github.com/kapmahc/fly/uploader/fs"
 	"github.com/kapmahc/fly/web"
 	"github.com/spf13/viper"
+	"github.com/unrolled/render"
 )
 
 type gormLogger struct {
@@ -38,11 +45,12 @@ func (p *Plugin) Open(g *inject.Graph) error {
 	if err != nil {
 		return err
 	}
-
+	// --------------------
+	theme := viper.GetString("server.theme")
 	// -------------------
 	up, err := fs.NewStore(
-		viper.GetString("uploader.dir"),
-		viper.GetString("uploader.home"),
+		path.Join("tmp", "attachments"),
+		"/upload",
 	)
 	if err != nil {
 		return err
@@ -58,6 +66,7 @@ func (p *Plugin) Open(g *inject.Graph) error {
 		&inject.Object{Value: db},
 		&inject.Object{Value: p.openRedis()},
 		&inject.Object{Value: up},
+		&inject.Object{Value: p.openRender(theme)},
 
 		&inject.Object{Value: &redis.Store{}},
 		&inject.Object{Value: rabbitmq.New(
@@ -118,4 +127,106 @@ func (p *Plugin) openRedis() *_redis.Pool {
 			return err
 		},
 	}
+}
+
+func (p *Plugin) openRender(theme string) *render.Render {
+	funcs := template.FuncMap{
+		"t": p.I18n.T,
+		"tn": func(v interface{}) string {
+			return reflect.TypeOf(v).String()
+		},
+		"dict": func(values ...interface{}) (gin.H, error) {
+			dict := gin.H{}
+			for i := 0; i < len(values); i += 2 {
+				key, ok := values[i].(string)
+				if !ok {
+					return nil, errors.New("dict keys must be strings")
+				}
+				dict[key] = values[i+1]
+			}
+			return dict, nil
+		},
+		"even": func(i interface{}) bool {
+			if i != nil {
+				switch i.(type) {
+				case int:
+					return i.(int)%2 == 0
+				case uint:
+					return i.(uint)%2 == 0
+				case int64:
+					return i.(int64)%2 == 0
+				case uint64:
+					return i.(uint64)%2 == 0
+				}
+			}
+			return false
+		},
+		"fmt": fmt.Sprintf,
+		"eq": func(arg1, arg2 interface{}) bool {
+			return arg1 == arg2
+		},
+		"str2htm": func(s string) template.HTML {
+			return template.HTML(s)
+		},
+		"dtf": func(t interface{}) string {
+			if t != nil {
+				f := "Mon Jan _2 15:04:05 2006"
+				switch t.(type) {
+				case time.Time:
+					return t.(time.Time).Format(f)
+				case *time.Time:
+					if t != (*time.Time)(nil) {
+						return t.(*time.Time).Format(f)
+					}
+				}
+			}
+			return ""
+		},
+		"df": func(t interface{}) string {
+			if t != nil {
+				f := "Mon Jan _2 2006"
+				switch t.(type) {
+				case time.Time:
+					return t.(time.Time).Format(f)
+				case *time.Time:
+					if t != (*time.Time)(nil) {
+						return t.(*time.Time).Format(f)
+					}
+				}
+			}
+			return ""
+		},
+		"links": func(loc string) []Link {
+			var items []Link
+			if err := p.Db.Where("loc = ?", loc).Order("sort_order DESC").Find(&items).Error; err != nil {
+				log.Error(err)
+			}
+			return items
+		},
+		"cards": func(loc string) []Card {
+			var items []Card
+			if err := p.Db.Where("loc = ?", loc).Order("sort_order DESC").Find(&items).Error; err != nil {
+				log.Error(err)
+			}
+			return items
+		},
+		"in": func(o interface{}, args []interface{}) bool {
+			for _, v := range args {
+				if o == v {
+					return true
+				}
+			}
+			return false
+		},
+		"starts": func(s string, b string) bool {
+			return strings.HasPrefix(s, b)
+		},
+	}
+
+	return render.New(render.Options{
+		Directory:     path.Join("themes", theme, "views"),
+		Extensions:    []string{".html"},
+		Funcs:         []template.FuncMap{funcs},
+		IsDevelopment: !web.IsProduction(),
+	})
 }

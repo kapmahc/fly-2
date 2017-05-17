@@ -1,0 +1,28 @@
+@import "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css";
+@import "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css";
+@import "//cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css";
+@import "//cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/basic.min.css";
+
+/* GLOBAL STYLES
+-------------------------------------------------- */
+
+
+/* Padding below the footer and lighter body text */
+
+body {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+
+/* BLOCK CSS
+-------------------------------------------------- */
+
+div.block {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+a.block {
+    padding-left: 1rem;
+}
