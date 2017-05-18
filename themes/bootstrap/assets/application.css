@@ -1,0 +1,16 @@
+@import "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css";
+@import "//fonts.googleapis.com/icon?family=Material+Icons";
+
+body {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+div.block {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+a.block {
+    padding-left: 1rem;
+}

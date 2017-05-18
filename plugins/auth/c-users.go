@@ -10,6 +10,8 @@ import (
 )
 
 func (p *Plugin) getUsersSignUp(c *gin.Context, v gin.H) error {
+	l := c.MustGet(i18n.LOCALE).(string)
+	v["title"] = p.I18n.T(l, "auth.users.sign-up.title")
 	return nil
 }
 

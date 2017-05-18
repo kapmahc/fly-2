@@ -533,7 +533,7 @@
 			"path": "github.com/streadway/amqp",
 			"revision": "1c63b162b69cf6834e0b30e496c4cd5d6ee2a1d1",
 			"revisionTime": "2017-05-15T17:03:37Z"
-		},		
+		},
 		{
 			"checksumSHA1": "Y+HGqEkYM15ir+J93MEaHdyFy0c=",
 			"path": "golang.org/x/net/context",

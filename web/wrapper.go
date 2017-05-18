@@ -8,6 +8,7 @@ import (
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/gin-gonic/gin"
+	"github.com/gorilla/csrf"
 )
 
 // Wrapper wrapper
@@ -75,12 +76,16 @@ func (p *Wrapper) Form(o interface{}, f func(*gin.Context, interface{}) error) g
 // HTML render html
 func (p *Wrapper) HTML(n string, f func(*gin.Context, gin.H) error) gin.HandlerFunc {
 	return p.Handle(func(c *gin.Context) error {
-		v := gin.H{}
-		if e := f(c, v); e != nil {
+		d := gin.H{}
+		for k, v := range c.Keys {
+			d[k] = v
+		}
+		d[csrf.TemplateTag] = csrf.TemplateField(c.Request)
+		d["csrf"] = csrf.Token(c.Request)
+		if e := f(c, d); e != nil {
 			return e
 		}
-		v["ctx"] = c.Keys
-		c.HTML(http.StatusOK, n, v)
+		c.HTML(http.StatusOK, n, d)
 		return nil
 
 	})

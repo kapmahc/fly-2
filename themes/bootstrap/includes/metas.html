@@ -1,0 +1,48 @@
+{{define "metas"}}
+<meta name="description" content="{{t .locale "site.description"}}">
+<meta name="keywords" content="{{t .locale "site.keywords"}}">
+<meta name="author" content="{{t .locale "site.author.name"}}<{{t .locale "site.author.email"}}>">
+<meta name="csrf-token" content="{{.csrf}}">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<title>{{.title}}|{{t .locale "site.subTitle"}}|{{t .locale "site.title"}}</title>
+{{end}}
+
+{{define "application-metas"}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{{template "metas" .}}
+<link rel="stylesheet" href="/assets/application.css">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+{{end}}
+
+{{define "dashboard-metas"}}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{template "metas" .}}
+<!-- Bootstrap -->
+<link href="/3rd/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link href="/3rd/gentelella/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<!-- NProgress -->
+<link href="/3rd/gentelella/vendors/nprogress/nprogress.css" rel="stylesheet">
+<!-- iCheck -->
+<link href="/3rd/gentelella/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+<!-- bootstrap-progressbar -->
+<link href="/3rd/gentelella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+<!-- JQVMap -->
+<link href="/3rd/gentelella/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+<!-- bootstrap-daterangepicker -->
+<link href="/3rd/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+<!-- Custom Theme Style -->
+<link href="/3rd/gentelella/build/css/custom.min.css" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+{{end}}
