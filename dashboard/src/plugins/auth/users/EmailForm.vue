@@ -23,16 +23,15 @@ export default {
   methods: {
     onSubmit (e) {
       e.preventDefault()
-      post(
-        `/users/${this.action}`,
-        {
-          email: this.email
-        },
-        function (rst) {
-          alert(this.$t(`auth.messages.email-for-${this.action}`))
-          this.$router.push({name: 'auth.users.sign-in'})
-        }.bind(this)
-      )
+      var data = new URLSearchParams()
+      data.append('email', this.email)
+      post(`/users/${this.action}`, data)
+        .then(
+          function (rst) {
+            alert(this.$t(`auth.messages.email-for-${this.action}`))
+            this.$router.push({name: 'auth.users.sign-in'})
+          }.bind(this)
+        ).catch(alert)
     }
   }
 }

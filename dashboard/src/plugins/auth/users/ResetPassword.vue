@@ -29,18 +29,15 @@ export default {
   methods: {
     onSubmit (e) {
       e.preventDefault()
-      post(
-        '/users/reset-password',
-        {
-          token: this.$route.params.token,
-          password: this.password,
-          passwordConfirmation: this.passwordConfirmation
-        },
-        function (rst) {
+      var data = new URLSearchParams()
+      data.append('token', this.$route.params.token)
+      data.append('password', this.password)
+      data.append('passwordConfirmation', this.passwordConfirmation)
+      post('/users/reset-password', data)
+        .then(function (rst) {
           alert(this.$t('auth.messages.reset-password-success'))
           this.$router.push({name: 'auth.users.sign-in'})
-        }.bind(this)
-      )
+        }.bind(this)).catch(alert)
     }
   }
 }

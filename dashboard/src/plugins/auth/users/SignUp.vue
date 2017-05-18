@@ -40,19 +40,16 @@ export default {
   methods: {
     onSubmit (e) {
       e.preventDefault()
-      post(
-        '/users/sign-up',
-        {
-          name: this.name,
-          email: this.email,
-          password: this.password,
-          passwordConfirmation: this.passwordConfirmation
-        },
-        function (rst) {
+      var data = new URLSearchParams()
+      data.append('email', this.email)
+      data.append('name', this.name)
+      data.append('password', this.password)
+      data.append('passwordConfirmation', this.passwordConfirmation)
+      post('/users/sign-up', data)
+        .then(function (rst) {
           alert(this.$t('auth.messages.email-for-confirm'))
           this.$router.push({name: 'auth.users.sign-in'})
-        }.bind(this)
-      )
+        }.bind(this)).catch(alert)
     }
   }
 }

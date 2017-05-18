@@ -626,10 +626,11 @@ func (p *Plugin) runServer(c *cli.Context, _ *inject.Graph) error {
 		viper.GetInt("server.port"),
 		web.IsProduction(),
 		cors.Options{
+			AllowedOrigins:   []string{web.Frontend()},
 			AllowedHeaders:   []string{"Authorization"},
 			AllowedMethods:   []string{http.MethodGet, http.MethodPost, http.MethodPut, http.MethodDelete, http.MethodPatch},
-			AllowedOrigins:   []string{web.Frontend()},
 			AllowCredentials: true,
+			Debug:            !web.IsProduction(),
 		},
 		render.Options{},
 	)

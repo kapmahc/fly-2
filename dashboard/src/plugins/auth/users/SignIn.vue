@@ -28,18 +28,16 @@ export default {
   methods: {
     onSubmit (e) {
       e.preventDefault()
-      post(
-        '/users/sign-in', {
-          email: this.email,
-          password: this.password
-        },
-        function (rst) {
+      var data = new URLSearchParams()
+      data.append('email', this.email)
+      data.append('password', this.password)
+      post('/users/sign-in', data)
+        .then(function (rst) {
           var token = rst.token
           sessionStorage.setItem(TOKEN, token)
           this.$store.commit('signIn', token)
           this.$router.push({name: 'site.dashboard'})
-        }.bind(this)
-      )
+        }.bind(this)).catch(alert)
     }
   }
 }

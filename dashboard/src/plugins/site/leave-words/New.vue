@@ -24,17 +24,14 @@ export default {
   methods: {
     onSubmit (e) {
       e.preventDefault()
-      post(
-        '/leave-words',
-        {
-          body: this.body,
-          type: 'text'
-        },
-        function (rst) {
+      var data = new URLSearchParams()
+      data.append('body', this.body)
+      data.append('type', 'text')
+      post('/leave-words', data)
+        .then(function (rst) {
           alert(this.$t('success'))
           this.body = ''
-        }.bind(this)
-      )
+        }.bind(this)).catch(alert)
     }
   }
 }

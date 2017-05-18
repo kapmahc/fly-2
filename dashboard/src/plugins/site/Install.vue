@@ -45,20 +45,18 @@ export default {
   methods: {
     onSubmit (e) {
       e.preventDefault()
-      post(
-        '/install',
-        {
-          title: this.title,
-          subTitle: this.subTitle,
-          email: this.email,
-          password: this.password,
-          passwordConfirmation: this.passwordConfirmation
-        },
-        function (rst) {
+      var data = new URLSearchParams()
+      data.append('title', this.title)
+      data.append('subTitle', this.subTitle)
+      data.append('email', this.email)
+      data.append('name', this.name)
+      data.append('password', this.password)
+      data.append('passwordConfirmation', this.passwordConfirmation)
+      post('/install', data)
+        .then(function (rst) {
           alert(this.$t('success'))
           this.$router.push({name: 'auth.users.sign-in'})
-        }.bind(this)
-      )
+        }.bind(this)).catch(alert)
     }
   }
 }

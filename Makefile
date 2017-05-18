@@ -21,18 +21,12 @@ vue:
 	cd dashboard && npm run build
 	cp -rv dashboard/dist $(dist)/public
 
-ng2:
-	mkdir -pv $(dist)
-	cd ng2-admin && npm run build:prod:aot
-	cp -rv ng2-admin/dist $(dist)/public
-
 
 clean:
 	-rm -rv $(dist) dist.tar.bz2
 	-rm -rv dashboard/dist
-	# -rm -rv ng2-admin/dist
 
+	
 init:
 	govendor sync
 	cd dashboard && npm install
-	# cd ng2-admin && npm install

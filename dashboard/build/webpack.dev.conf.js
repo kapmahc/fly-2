@@ -37,9 +37,6 @@ module.exports = merge(baseWebpackConfig, {
     //   'window.jQuery': 'jquery',
     //   Tether: 'tether'
     // })
-  ],
-  externals: {
-    jquery: 'jQuery'
-  }
+  ]
 
 })
