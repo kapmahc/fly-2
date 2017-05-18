@@ -9,4 +9,6 @@ func (p *Plugin) Mount(rt *gin.Engine) {
 
 	rt.GET("/leave-words/new", p.Wrapper.HTML("site/leave-words/new", p.newLeaveWord))
 	rt.POST("/leave-words", p.Wrapper.Form(&fmLeaveWord{}, p.createLeaveWord))
+
+	rt.GET("/dashboard", p.Jwt.MustSignInMiddleware, p.Wrapper.HTML("site/dashboard", p.getDashboard))
 }

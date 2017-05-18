@@ -1,0 +1,18 @@
+/*Bootstrap*/
+@import "/3rd/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css";
+/*Font Awesome*/
+@import "/3rd/gentelella/vendors/font-awesome/css/font-awesome.min.css";
+/*NProgress*/
+@import "/3rd/gentelella/vendors/nprogress/nprogress.css";
+/*iCheck*/
+@import "/3rd/gentelella/vendors/iCheck/skins/flat/green.css";
+/*bootstrap-progressbar*/
+@import "/3rd/gentelella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css";
+/*JQVMap*/
+@import "/3rd/gentelella/vendors/jqvmap/dist/jqvmap.min.css";
+/*bootstrap-daterangepicker*/
+@import "/3rd/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css";
+/*Custom Theme Style*/
+@import "/3rd/gentelella/build/css/custom.min.css";
+/*google material icons*/
+@import "//fonts.googleapis.com/icon?family=Material+Icons";

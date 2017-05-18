@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/kapmahc/fly#readme",
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.6"
+    "bootstrap": "^4.0.0-alpha.6",
+    "gentelella": "github:puikinsh/gentelella#c61b0c7663cd7fa17ff8971a21de8a5e9d3c2c07"
   }
 }

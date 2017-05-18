@@ -49,7 +49,7 @@ func OpenRender(root string, funcs template.FuncMap) (Render, error) {
 				Funcs(funcs)
 
 			files := append(includes, layout, path)
-			log.Debugln("find view", name, "with files", files)
+			log.Debugln("find view", name, "with layout", lyn)
 			for _, n := range files {
 				buf, err := ioutil.ReadFile(n)
 				if err != nil {
