@@ -75,6 +75,11 @@ func (p *Wrapper) Form(o interface{}, f func(*gin.Context, interface{}) error) g
 
 // HTML render html
 func (p *Wrapper) HTML(n string, f func(*gin.Context, gin.H) error) gin.HandlerFunc {
+	if f == nil {
+		f = func(*gin.Context, gin.H) error {
+			return nil
+		}
+	}
 	return p.Handle(func(c *gin.Context) error {
 		d := gin.H{}
 		for k, v := range c.Keys {

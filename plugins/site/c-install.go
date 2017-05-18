@@ -9,6 +9,12 @@ import (
 	"github.com/kapmahc/fly/plugins/auth"
 )
 
+func (p *Plugin) getInstall(c *gin.Context, v gin.H) error {
+	l := c.MustGet(i18n.LOCALE).(string)
+	v["title"] = p.I18n.T(l, "site.install.title")
+	return nil
+}
+
 type fmInstall struct {
 	Title                string `form:"title" validate:"required"`
 	SubTitle             string `form:"subTitle" validate:"required"`

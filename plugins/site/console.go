@@ -615,7 +615,7 @@ func (p *Plugin) runServer(c *cli.Context, _ *inject.Graph) error {
 	}
 	rt.HTMLRender = rdr
 	// --------------------
-	rt.Static("/3rd", "3rd")
+	rt.Static("/3rd", "node_modules")
 	rt.Static("/upload", path.Join("tmp", "attachments"))
 	rt.Static("/assets", path.Join("themes", theme, "assets"))
 	// --------------------

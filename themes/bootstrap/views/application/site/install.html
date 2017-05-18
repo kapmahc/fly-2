@@ -1,0 +1,36 @@
+{{define "content"}}
+<div class="col-8 offset-2">
+  <h3>{{.title}}</h3>
+  <hr />
+  <form id="fm-site-install" method="post" action="/install" data-next="/users/sign-in">
+    <div class="form-group">
+      <label for="subTitle">{{t .locale "site.attributes.title"}}</label>
+      <input type="text" class="form-control" id="title" name="title">
+    </div>
+    <div class="form-group">
+      <label for="subTitle">{{t .locale "site.attributes.subTitle"}}</label>
+      <input type="text" class="form-control" id="subTitle" name="subTitle">
+    </div>
+    <div class="form-group">
+      <label for="name">{{t .locale "attributes.fullName"}}</label>
+      <input type="text" class="form-control" id="name" name="name">
+    </div>
+    <div class="form-group">
+      <label for="email">{{t .locale "attributes.email"}}</label>
+      <input type="email" class="form-control" id="email" name="email"  aria-describedby="emailHelp">
+      <small id="emailHelp" class="form-text text-muted">{{t .locale "helpers.email"}}</small>
+    </div>
+    <div class="form-group">
+      <label for="password">{{t .locale "attributes.password"}}</label>
+      <input type="password" class="form-control" name="password" id="password" aria-describedby="passwordHelp">
+      <small id="passwordHelp" class="form-text text-muted">{{t .locale "helpers.password"}}</small>
+    </div>
+    <div class="form-group">
+      <label for="passwordConfirmation">{{t .locale "attributes.passwordConfirmation"}}</label>
+      <input type="password" class="form-control" name="passwordConfirmation" id="passwordConfirmation" aria-describedby="passwordConfirmationHelp">
+      <small id="passwordConfirmationHelp" class="form-text text-muted">{{t .locale "helpers.passwordConfirmation"}}</small>
+    </div>
+    {{template "form-buttons" .}}
+  </form>
+</div>
+{{end}}

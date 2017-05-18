@@ -1,0 +1,22 @@
+{
+  "name": "fly",
+  "version": "1.0.0",
+  "description": "A complete open source e-commerce solution for the Go language(STILL IN DEVELOPMENT).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kapmahc/fly.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kapmahc/fly/issues"
+  },
+  "homepage": "https://github.com/kapmahc/fly#readme",
+  "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6"
+  }
+}
