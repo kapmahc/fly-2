@@ -1,0 +1,22 @@
+{{define "non-sign-in-links"}}
+<div class="list-group block">
+  <a href="/users/sign-in" class="list-group-item list-group-item-action">
+    {{template "icon" "security"}}&nbsp;{{t .locale  "auth.users.sign-in.title"}}
+  </a>
+  <a href="/users/sign-up" class="list-group-item list-group-item-action">
+    {{template "icon" "person_add"}}&nbsp;{{t .locale  "auth.users.sign-up.title"}}
+  </a>
+  <a href="/users/forgot-password" class="list-group-item list-group-item-action">
+    {{template "icon" "find_replace"}}&nbsp;{{t .locale  "auth.users.forgot-password.title"}}
+  </a>
+  <a href="/users/confim" class="list-group-item list-group-item-action">
+    {{template "icon" "confirmation_number"}}&nbsp;{{t .locale  "auth.users.confirm.title"}}
+  </a>
+  <a href="/users/unlock" class="list-group-item list-group-item-action">
+    {{template "icon" "lock_open"}}&nbsp;{{t .locale  "auth.users.unlock.title"}}
+  </a>
+  <a href="/users/leave-words/new" class="list-group-item list-group-item-action">
+    {{template "icon" "message"}}&nbsp;{{t .locale  "site.leave-words.new.title"}}
+  </a>
+</div>
+{{end}}
