@@ -16,23 +16,20 @@ func (p *Plugin) getInstall(c *gin.Context, v gin.H) error {
 }
 
 type fmInstall struct {
-	Title                string `form:"title" validate:"required"`
-	SubTitle             string `form:"subTitle" validate:"required"`
-	Email                string `form:"email" validate:"required,email"`
-	Password             string `form:"password" validate:"min=6,max=32"`
-	PasswordConfirmation string `form:"passwordConfirmation" validate:"eqfield=Password"`
+	Title                string `form:"title" binding:"required"`
+	SubTitle             string `form:"subTitle" binding:"required"`
+	Name                 string `form:"name" binding:"required"`
+	Email                string `form:"email" binding:"required,email"`
+	Password             string `form:"password" binding:"min=6,max=32"`
+	PasswordConfirmation string `form:"passwordConfirmation" binding:"eqfield=Password"`
 }
 
-func (p *Plugin) postInstall(c *gin.Context) error {
-	var fm fmInstall
-	if err := c.Bind(&fm); err != nil {
-		return err
-	}
-
+func (p *Plugin) postInstall(c *gin.Context, o interface{}) error {
+	fm := o.(*fmInstall)
 	lng := c.MustGet(i18n.LOCALE).(string)
 	p.I18n.Set(lng, "site.title", fm.Title)
 	p.I18n.Set(lng, "site.subTitle", fm.SubTitle)
-	user, err := p.Dao.AddEmailUser("root", fm.Email, fm.Password)
+	user, err := p.Dao.AddEmailUser(fm.Name, fm.Email, fm.Password)
 	if err != nil {
 		return err
 	}
