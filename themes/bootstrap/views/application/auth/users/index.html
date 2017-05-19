@@ -1,0 +1,16 @@
+{{define "content"}}
+<div class="col-12">
+  {{template "app-page-title" .title}}
+  <div class="card-columns">
+    {{range .users}}
+      <div class="card">
+        <img class="card-img-top" src="{{.Logo}}" alt="{{.Logo}}">
+        <div class="card-block">
+          <h4 class="card-title">{{.Name}}</h4>
+          <p class="card-text"></p>
+        </div>
+      </div>
+    {{end}}
+  </div>
+</div>
+{{end}}

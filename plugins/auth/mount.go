@@ -21,5 +21,10 @@ func (p *Plugin) Mount(rt *gin.Engine) {
 	ung.POST("/reset-password", p.Wrapper.Form(&fmResetPassword{}, p.postUsersResetPassword))
 
 	umg := rt.Group("/users", p.Jwt.MustSignInMiddleware)
+	umg.GET("/self", p.Wrapper.HTML("auth/users/self", p.getUsersSelf))
+	umg.POST("/info", p.Wrapper.Form(&fmInfo{}, p.postUsersInfo))
+	umg.POST("/change-password", p.Wrapper.Form(&fmChangePassword{}, p.postUsersChangePassword))
 	umg.DELETE("/sign-out", p.Wrapper.Handle(p.deleteUsersSignOut))
+
+	rt.GET("/users", p.Wrapper.HTML("auth/users/index", p.indexUsers))
 }

@@ -31,7 +31,16 @@ type Plugin struct {
 func (p *Plugin) Init() {}
 
 // Dashboard Dashboard
-func (p *Plugin) Dashboard(*gin.Context) web.Dropdown {
+func (p *Plugin) Dashboard(c *gin.Context) web.Dropdown {
+	if _, ok := c.Get(CurrentUser); ok {
+		return web.NewDropdown(
+			"auth.dashboard.title",
+			"home",
+			web.NewLink("auth.users.logs.title", "/users/logs"),
+			web.NewLink("auth.users.info.title", "/users/info"),
+			web.NewLink("auth.users.change-password.title", "/users/change-password"),
+		)
+	}
 	return nil
 }
 

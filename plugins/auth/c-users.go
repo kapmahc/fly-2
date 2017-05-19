@@ -212,34 +212,25 @@ func (p *Plugin) deleteUsersSignOut(c *gin.Context) error {
 	return nil
 }
 
-// TODO
-func (p *Plugin) getUsersInfo(c *gin.Context) error {
-	user := c.MustGet(CurrentUser).(*User)
-	c.JSON(http.StatusOK, gin.H{"name": user.Name, "email": user.Email})
-	return nil
-}
-
 type fmInfo struct {
 	Name string `form:"name" binding:"required,max=255"`
-	// Home string `form:"home" binding:"max=255"`
-	// Logo string `form:"logo" binding:"max=255"`
+	Home string `form:"home" binding:"max=255"`
+	Logo string `form:"logo" binding:"max=255"`
 }
 
-func (p *Plugin) postUsersInfo(c *gin.Context) error {
+func (p *Plugin) postUsersInfo(c *gin.Context, o interface{}) error {
 	user := c.MustGet(CurrentUser).(*User)
-	var fm fmInfo
-	if err := c.Bind(&fm); err != nil {
-		return err
-	}
+	fm := o.(*fmInfo)
 
 	if err := p.Db.Model(user).Updates(map[string]interface{}{
-		// "home": fm.Home,
-		// "logo": fm.Logo,
+		"home": fm.Home,
+		"logo": fm.Logo,
 		"name": fm.Name,
 	}).Error; err != nil {
 		return err
 	}
-	c.JSON(http.StatusOK, gin.H{})
+	l := c.MustGet(i18n.LOCALE).(string)
+	c.JSON(http.StatusOK, gin.H{"message": p.I18n.T(l, "success")})
 	return nil
 }
 
@@ -249,14 +240,11 @@ type fmChangePassword struct {
 	PasswordConfirmation string `form:"passwordConfirmation" binding:"eqfield=NewPassword"`
 }
 
-func (p *Plugin) postUsersChangePassword(c *gin.Context) error {
+func (p *Plugin) postUsersChangePassword(c *gin.Context, o interface{}) error {
 	l := c.MustGet(i18n.LOCALE).(string)
-
+	fm := o.(*fmChangePassword)
 	user := c.MustGet(CurrentUser).(*User)
-	var fm fmChangePassword
-	if err := c.Bind(&fm); err != nil {
-		return err
-	}
+
 	if !p.Hmac.Chk([]byte(fm.CurrentPassword), user.Password) {
 		return p.I18n.E(http.StatusForbidden, l, "auth.errors.bad-password")
 	}
@@ -265,11 +253,13 @@ func (p *Plugin) postUsersChangePassword(c *gin.Context) error {
 		return err
 	}
 
-	c.JSON(http.StatusOK, gin.H{})
+	c.JSON(http.StatusOK, gin.H{"message": p.I18n.T(l, "success")})
 	return nil
 }
 
-func (p *Plugin) getUsersLogs(c *gin.Context) error {
+func (p *Plugin) getUsersSelf(c *gin.Context, v gin.H) error {
+	l := c.MustGet(i18n.LOCALE).(string)
+	v["title"] = p.I18n.T(l, "auth.users.logs.title")
 	user := c.MustGet(CurrentUser).(*User)
 	var logs []Log
 	if err := p.Db.
@@ -280,11 +270,13 @@ func (p *Plugin) getUsersLogs(c *gin.Context) error {
 		return err
 	}
 
-	c.JSON(http.StatusOK, logs)
+	v["logs"] = logs
 	return nil
 }
 
-func (p *Plugin) indexUsers(c *gin.Context) error {
+func (p *Plugin) indexUsers(c *gin.Context, v gin.H) error {
+	l := c.MustGet(i18n.LOCALE).(string)
+	v["title"] = p.I18n.T(l, "auth.users.index.title")
 	var users []User
 	if err := p.Db.
 		Select([]string{"name", "logo", "home"}).
@@ -292,7 +284,7 @@ func (p *Plugin) indexUsers(c *gin.Context) error {
 		Find(&users).Error; err != nil {
 		return err
 	}
-	c.JSON(http.StatusOK, users)
+	v["users"] = users
 	return nil
 }
 

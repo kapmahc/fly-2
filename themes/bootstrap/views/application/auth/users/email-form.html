@@ -1,13 +1,12 @@
 {{define "content"}}
 <div class="col-8 offset-2">
-  <h3>{{.title}}</h3>
-  <hr />
+  {{template "app-page-title" .title}}
   <form id="fm-users-{{.action}}" method="post" action="/users/{{.action}}" data-next="/users/sign-in">
     <div class="form-group">
       <label for="email">{{t .locale "attributes.email"}}</label>
       <input type="email" class="form-control" id="email" name="email">
     </div>
-    {{template "form-buttons" .}}
+    {{template "app-form-buttons" .}}
   </form>
   {{template "non-sign-in-links" .}}
 </div>

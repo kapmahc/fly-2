@@ -1,4 +1,25 @@
-{{define "title"}}
-<h2>{{.}}</h2>
-<hr/>
+{{define "app-page-title"}}
+<h3>{{.}}</h3>
+<hr />
+{{end}}
+
+{{define "ds-page-title"}}
+<div class="page-title">
+  <div class="title_left">
+    <h3>{{.title}} <small>{{.subTitle}}</small></h3>
+  </div>
+  {{if .search}}
+  <div class="title_right">
+    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="{{t .locale "hints.search"}}">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">{{t .locale "buttons.search"}}</button>
+        </span>
+      </div>
+    </div>
+  </div>
+  {{end}}
+</div>
+<div class="clearfix"></div>
 {{end}}

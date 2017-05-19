@@ -1,7 +1,6 @@
 {{define "content"}}
 <div class="col-8 offset-2">
-  <h3>{{.title}}</h3>
-  <hr />
+  {{template "app-page-title" .title}}
   <form id="fm-users-sign-in" method="post" action="/users/sign-in" data-next="/dashboard">
     <div class="form-group">
       <label for="email">{{t .locale "attributes.email"}}</label>
@@ -11,7 +10,7 @@
       <label for="password">{{t .locale "attributes.password"}}</label>
       <input type="password" class="form-control" name="password" id="password">
     </div>
-    {{template "form-buttons" .}}
+    {{template "app-form-buttons" .}}
   </form>
   {{template "non-sign-in-links" .}}
 </div>

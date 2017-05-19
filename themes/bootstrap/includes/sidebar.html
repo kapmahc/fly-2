@@ -1,0 +1,30 @@
+{{define "ds-sidebar"}}
+<div class="col-md-3 left_col">
+  <div class="left_col scroll-view">
+    <div class="navbar nav_title" style="border: 0;">
+      <a href="/" target="_blank" class="site_title"><i class="fa fa-paw"></i> <span>{{t .locale "site.subTitle"}}</span></a>
+    </div>
+    <div class="clearfix"></div>
+    {{template "ds-sidebar-profile" .}}
+    <br />
+    <!-- sidebar menu -->
+    {{template "sidebar-menu" .}}
+    <!-- /sidebar menu -->
+    <!-- /menu footer buttons -->
+    {{template "menu-footer-buttons" .}}
+    <!-- /menu footer buttons -->
+  </div>
+</div>
+{{end}}
+
+{{define "ds-sidebar-profile"}}
+<div class="profile clearfix">
+  <div class="profile_pic">
+    <img src="/assets/my.jpg" alt="logo" class="img-circle profile_img">
+  </div>
+  <div class="profile_info">
+    <span>{{t .locale "personal-bar.welcome"}}</span>
+    <h2>{{.currentUser.Name}}</h2>
+  </div>
+</div>
+{{end}}

@@ -1,7 +1,6 @@
 {{define "content"}}
 <div class="col-8 offset-2">
-  <h3>{{.title}}</h3>
-  <hr />
+  {{template "app-page-title" .title}}
   <form id="fm-site-install" method="post" action="/install" data-next="/users/sign-in">
     <div class="form-group">
       <label for="subTitle">{{t .locale "site.attributes.title"}}</label>
@@ -30,7 +29,7 @@
       <input type="password" class="form-control" name="passwordConfirmation" id="passwordConfirmation" aria-describedby="passwordConfirmationHelp">
       <small id="passwordConfirmationHelp" class="form-text text-muted">{{t .locale "helpers.passwordConfirmation"}}</small>
     </div>
-    {{template "form-buttons" .}}
+    {{template "app-form-buttons" .}}
   </form>
 </div>
 {{end}}

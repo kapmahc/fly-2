@@ -26,7 +26,9 @@ $(function(){
         if(rst.message) {
           alert(rst.message)
         }
-        window.location.href = next;
+        if(next) {
+          window.location.href = next;          
+        }
       }).fail(function(req){
         alert(req.responseText || req.statusText);
       });

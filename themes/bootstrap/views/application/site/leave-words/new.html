@@ -1,7 +1,6 @@
 {{define "content"}}
 <div class="col-8 offset-2">
-  <h3>{{.title}}</h3>
-  <hr />
+  {{template "app-page-title" .title}}
   <form id="fm-leave-words-new" method="post" action="/leave-words" data-next="/leave-words/new">
     <input type="hidden" value="text" name="type" id="type"/>
     <div class="form-group">
@@ -9,7 +8,7 @@
       <textarea class="form-control" id="body" name="body" rows="6" aria-describedby="bodyHelp"></textarea>
       <small id="bodyHelp" class="form-text text-muted">{{t .locale "site.helpers.leave-word.body"}}</small>
     </div>
-    {{template "form-buttons" .}}
+    {{template "app-form-buttons" .}}
   </form>
   {{template "non-sign-in-links" .}}
 </div>

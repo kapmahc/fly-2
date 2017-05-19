@@ -1,14 +1,4 @@
-{{define "menu-profile"}}
-<div class="profile clearfix">
-  <div class="profile_pic">
-    <img src="/assets/my.jpg" alt="..." class="img-circle profile_img">
-  </div>
-  <div class="profile_info">
-    <span>Welcome,</span>
-    <h2>John Doe</h2>
-  </div>
-</div>
-{{end}}
+
 
 
 {{define "sidebar-menu"}}
@@ -226,56 +216,6 @@
         </li>
       </ul>
     </nav>
-  </div>
-</div>
-{{end}}
-
-
-{{define "page-content"}}
-<div class="right_col" role="main">
-  {{template "top-tiles" .}}
-
-  <div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-      <div class="dashboard_graph">
-
-        {{template "network-activities" .}}
-
-        <div class="col-md-9 col-sm-9 col-xs-12">
-          <div id="chart_plot_01" class="demo-placeholder"></div>
-        </div>
-        {{template "top-campaign-performance" .}}
-
-        <div class="clearfix"></div>
-      </div>
-    </div>
-
-  </div>
-  <br />
-
-  <div class="row">
-    <div class="col-md-4 col-sm-4 col-xs-12">
-      {{template "app-version" .}}
-    </div>
-    <div class="col-md-4 col-sm-4 col-xs-12">
-      {{template "device-usage" .}}
-    </div>
-    <div class="col-md-4 col-sm-4 col-xs-12">
-      {{template "quick-settings" .}}
-    </div>
-  </div>
-
-  <div class="row">
-    {{template "recent-activities" .}}
-    <div class="col-md-8 col-sm-8 col-xs-12">
-      <div class="row">
-        {{template "visitors-location" .}}
-      </div>
-      <div class="row">
-        {{template "todo-list" .}}
-        {{template "daily-active-users" .}}
-      </div>
-    </div>
   </div>
 </div>
 {{end}}
