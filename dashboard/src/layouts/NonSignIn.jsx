@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Layout from './Application'
 
 const Widget = ({children}) => (
-  <div>
-    <div>dashboard header</div>
+  <Layout>
+    <div>non sign in header</div>
     {children}
-    <div>footer</div>
-  </div>
+  </Layout>
 )
 
 Widget.propTypes = {
