@@ -1,6 +1,10 @@
 # Go
 /vendor/*/
 
+# Javascript
+node_modules/
+npm-debug.log
+
 # Build
 /build
 /dist.tar.bz2
