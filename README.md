@@ -98,3 +98,5 @@ GRANT ALL PRIVILEGES ON DATABASE db-name TO user-name;
 - [ng-bootstrap](https://ng-bootstrap.github.io/#/getting-started)
 - [ng2-admin](https://akveo.github.io/ng2-admin/)
 - [validator](https://github.com/go-playground/validator)
+- [pixabay](https://pixabay.com)
+- [Material icons](https://material.io/icons/)
