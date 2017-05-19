@@ -25,7 +25,7 @@ go run main.go g c # generate config.toml
 
 ```bash
 cd $GOPATH/src/github.com/kapmahc/fly/dashboard
-npm run dev
+npm start
 ```
 
 ## Create database
@@ -85,6 +85,7 @@ GRANT ALL PRIVILEGES ON DATABASE db-name TO user-name;
 - editorconfig
 - atom-typescript
 - language-vue
+- react
 
 ## Documents
 
