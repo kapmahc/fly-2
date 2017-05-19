@@ -8,7 +8,7 @@ const Widget = () => (
     <div>
       sign in
       <hr />
-      <FormattedMessage id="buttons.submit" />
+      <FormattedMessage id="buttons.cancel" />
     </div>
   </Layout>
 )

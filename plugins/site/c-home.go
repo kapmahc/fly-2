@@ -8,7 +8,7 @@ import (
 )
 
 func (p *Plugin) getLocales(c *h2o.Context) error {
-	items, err := p.I18n.All(c.Param("lang"))
+	items, err := p.I18n.Store.All(c.Param("lang"))
 	if err != nil {
 		return err
 	}

@@ -9,10 +9,6 @@ import { IntlProvider, addLocaleData } from 'react-intl'
 
 import reducers from './reducers'
 import plugins from './plugins'
-import i18n from './i18n'
-
-const userLocale = i18n()
-addLocaleData(userLocale.data)
 
 const history = createHistory()
 
@@ -26,12 +22,13 @@ const store = createStore(
   applyMiddleware(middleware)
 )
 
-function main() {
+function main(user) {
+  addLocaleData(user.data)
   ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <LocaleProvider locale={userLocale.antd}>
-          <IntlProvider locale={userLocale.locale} messages={userLocale.messages}>
+        <LocaleProvider locale={user.antd}>
+          <IntlProvider locale={user.locale} messages={user.messages}>
             <div>
               {plugins.routes}
             </div>
