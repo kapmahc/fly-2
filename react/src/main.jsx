@@ -4,7 +4,6 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import createHistory from 'history/createBrowserHistory'
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
-import { LocaleProvider } from 'antd'
 import { IntlProvider, addLocaleData } from 'react-intl'
 
 import reducers from './reducers'
@@ -27,13 +26,11 @@ function main(user) {
   ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <LocaleProvider locale={user.antd}>
-          <IntlProvider locale={user.locale} messages={user.messages}>
-            <div>
-              {plugins.routes}
-            </div>
-          </IntlProvider>
-        </LocaleProvider>
+        <IntlProvider locale={user.locale} messages={user.messages}>
+          <div>
+            {plugins.routes}
+          </div>
+        </IntlProvider>        
       </ConnectedRouter>
     </Provider>,
     document.getElementById('root')

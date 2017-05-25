@@ -1,0 +1,11 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
+body {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.block {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}

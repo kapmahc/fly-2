@@ -87,16 +87,7 @@ GRANT ALL PRIVILEGES ON DATABASE db-name TO user-name;
 - language-vue
 - react
 
-## Documents
+## Resources
 
-- [nvm](https://github.com/creationix/nvm)
-- [bootstrap](https://v4-alpha.getbootstrap.com/getting-started/introduction/)
-- [vuejs](https://vuejs.org/v2/guide/)
-- [vuex](https://vuex.vuejs.org/en/)
-- [vue-router](https://router.vuejs.org/en/)
-- [angular](https://angular.io/docs/ts/latest/quickstart.html)
-- [ng-bootstrap](https://ng-bootstrap.github.io/#/getting-started)
-- [ng2-admin](https://akveo.github.io/ng2-admin/)
-- [validator](https://github.com/go-playground/validator)
 - [pixabay](https://pixabay.com)
 - [Material icons](https://material.io/icons/)
