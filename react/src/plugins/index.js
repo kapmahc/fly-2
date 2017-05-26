@@ -5,9 +5,9 @@ import site from './site'
 
 const plugins = {
   auth,
-  site,
   // forum,
   // reading
+  site
 }
 
 export default {

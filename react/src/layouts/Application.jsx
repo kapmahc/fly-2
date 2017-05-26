@@ -7,14 +7,17 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 
 const Widget = ({children}) => (
-  <Sidebar>
+  <div>
     <Header />
-    <div style={{marginTop: '3em'}}/>
-    <Container>      
-      <Grid>{children}</Grid>
-    </Container>
-    <Footer />
-  </Sidebar>
+    <div style={{marginTop: '2.8em'}}/>
+    <Sidebar>
+      <br/>
+      <Container>
+        <Grid>{children}</Grid>
+      </Container>
+      <Footer />
+    </Sidebar>
+  </div>
 )
 
 Widget.propTypes = {
