@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Container } from 'semantic-ui-react'
 
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -7,9 +8,10 @@ import Footer from '../components/Footer'
 const Widget = ({children}) => (
   <div>
     <Header />
-    <div className="ui container" style={{marginTop: '4em'}}>      
+    <div style={{marginTop: '3em'}}/>
+    <Container>
       {children}
-    </div>
+    </Container>
     <Footer />
   </div>
 )

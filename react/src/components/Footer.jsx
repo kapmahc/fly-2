@@ -1,51 +1,96 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {injectIntl, intlShape} from 'react-intl'
+import { Segment, Container, Divider, List, Grid, Header } from 'semantic-ui-react'
 
+const Group = ({title, links}) => (
+  <Grid.Column width={3}>
+    <Header inverted as="h4">{title}</Header>
+    <List inverted link>
+      {links.map((l,i) => <List.Item key={i} as="a">{l.label}</List.Item>)}
+    </List>
+  </Grid.Column>
+)
+
+Group.propTypes = {
+  title: PropTypes.string.isRequired,
+  links: PropTypes.array.isRequired
+}
+
+// -----------------------------------
+
+const Detail = ({title, description}) => (
+  <Grid.Column width={7}>
+    <Header inverted>{title}</Header>
+    <p>{description}</p>
+  </Grid.Column>
+)
+
+Detail.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired
+}
+
+// -----------------------------------
+
+const Bottom = ({links}) => (
+  <List horizontal inverted size="small" divided link>
+    {links.map((l, i) => <List.Item key={i} as="a">{l.label}</List.Item>)}
+  </List>
+)
+
+Bottom.propTypes = {  
+  links: PropTypes.array.isRequired
+}
+
+// -----------------------------------
 const Widget = ({intl}) => (
-  <div className="ui inverted vertical footer segment" style={{margin: '4em 0em 0em', padding: '4em 0em'}}>
-    <div className="ui center aligned container">
-      <div className="ui stackable inverted divided grid">
-        <div className="three wide column">
-          <h4 className="ui inverted header">Group 1</h4>
-          <div className="ui inverted link list">
-            <a href="/" className="item">Link One</a>
-            <a href="/" className="item">Link Two</a>
-            <a href="/" className="item">Link Three</a>
-            <a href="/" className="item">Link Four</a>
-          </div>
-        </div>
-        <div className="three wide column">
-          <h4 className="ui inverted header">Group 2</h4>
-          <div className="ui inverted link list">
-            <a href="/" className="item">Link One</a>
-            <a href="/" className="item">Link Two</a>
-            <a href="/" className="item">Link Three</a>
-            <a href="/" className="item">Link Four</a>
-          </div>
-        </div>
-        <div className="three wide column">
-          <h4 className="ui inverted header">Group 3</h4>
-          <div className="ui inverted link list">
-            <a href="/" className="item">Link One</a>
-            <a href="/" className="item">Link Two</a>
-            <a href="/" className="item">Link Three</a>
-            <a href="/" className="item">Link Four</a>
-          </div>
-        </div>
-        <div className="seven wide column">
-          <h4 className="ui inverted header">Footer Header</h4>
-          <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
-        </div>
-      </div>
-      <div className="ui inverted section divider"></div>
-      <div className="ui horizontal inverted small divided link list">
-        <a className="item" href="/">Site Map</a>
-        <a className="item" href="/">Contact Us</a>
-        <a className="item" href="/">Terms and Conditions</a>
-        <a className="item" href="/">Privacy Policy</a>
-      </div>
-    </div>
-  </div>
+  <Segment inverted vertical style={{margin: '4em 0em 0em', padding: '4em 0em'}}>
+    <Container textAlign='center'>
+      <Grid stackable divided>
+        <Group
+          title="Group 1"
+          links={[
+            {href:"/", label: "Link One"},
+            {href:"/", label: "Link Two"},
+            {href:"/", label: "Link Three"},
+            {href:"/", label: "Link Four"},
+          ]}
+          />
+        <Group
+          title="Group 2"
+          links={[
+            {href:"/", label: "Link One"},
+            {href:"/", label: "Link Two"},
+            {href:"/", label: "Link Three"},
+            {href:"/", label: "Link Four"},
+          ]}
+          />
+        <Group
+          title="Group 3"
+          links={[
+            {href:"/", label: "Link One"},
+            {href:"/", label: "Link Two"},
+            {href:"/", label: "Link Three"},
+            {href:"/", label: "Link Four"},
+          ]}
+          />
+        <Detail
+          title="Footer Header"
+          description = "Extra space for a call to action inside the footer that could help re-engage users."
+          />
+      </Grid>
+      <Divider section inverted/>
+      <Bottom
+        links = {[
+          {href: "/", label: "Site Map"},
+          {href: "/", label: "Contact Us"},
+          {href: "/", label: "Terms and Conditions"},
+          {href: "/", label: "Privacy Policy"}
+        ]}
+        />
+    </Container>
+  </Segment>
 )
 
 Widget.propTypes = {

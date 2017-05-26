@@ -1,7 +1,7 @@
 import React from 'react'
 import {FormattedMessage} from 'react-intl'
 
-import Layout from '../../../layouts/NonSignIn'
+import Layout from '../NonSignIn'
 
 const Widget = () => (
   <Layout>

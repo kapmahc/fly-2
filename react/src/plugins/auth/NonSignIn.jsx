@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Layout from './Application'
+import Layout from '../../layouts/Application'
 
 const Widget = ({children}) => (
   <Layout>
