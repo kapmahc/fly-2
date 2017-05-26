@@ -7,13 +7,10 @@ import Footer from '../components/Footer'
 const Widget = ({children}) => (
   <div>
     <Header />
-    <div className="container">
-      <div className="row">
-        {children}        
-      </div>
-      <hr />
-      <Footer />
+    <div className="ui container" style={{marginTop: '4em'}}>      
+      {children}
     </div>
+    <Footer />
   </div>
 )
 

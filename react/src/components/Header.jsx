@@ -1,40 +1,21 @@
 import React, {Component} from 'react'
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
 
-import SearchForm from './SearchForm'
+import { Menu } from 'semantic-ui-react'
 
 class Widget extends Component {
-  constructor(props) {
-    super(props)
+  state = { activeItem: 'home' }
 
-    this.toggle = this.toggle.bind(this)
-    this.state = {
-      isOpen: false
-    }
-  }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    })
-  }
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
   render() {
-    return (
+    const { activeItem } = this.state
 
-      <Navbar color="inverse" inverse toggleable="md" fixed="top">
-        <NavbarToggler right onClick={this.toggle} />
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
-        <Collapse isOpen={this.state.isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink href="/components/">Components</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">Github</NavLink>
-            </NavItem>
-          </Nav>
-          <SearchForm />
-        </Collapse>
-      </Navbar>
+    return (
+      <Menu inverted fixed="top">
+        <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
+        <Menu.Item name='messages' active={activeItem === 'messages'} onClick={this.handleItemClick} />
+        <Menu.Item name='friends' active={activeItem === 'friends'} onClick={this.handleItemClick} />
+      </Menu>
     )
   }
 }
