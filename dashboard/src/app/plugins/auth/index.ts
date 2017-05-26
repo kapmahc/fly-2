@@ -5,11 +5,23 @@ import {UsersUnlockComponent} from './users/unlock.component';
 import {UsersForgotPasswordComponent} from './users/forgot-password.component';
 
 export default {
+  components: [
+    UsersSignInComponent,
+    UsersSignUpComponent,
+    UsersConfirmComponent,
+    UsersUnlockComponent,
+    UsersForgotPasswordComponent
+  ],
   routes: [
-    { path: 'users/sign-in', component: UsersSignInComponent },
-    { path: 'users/sign-up', component: UsersSignUpComponent },
-    { path: 'users/confirm', component: UsersConfirmComponent },
-    { path: 'users/unlock', component: UsersUnlockComponent },
-    { path: 'users/forgot-password', component: UsersForgotPasswordComponent }
+    {
+      path: 'users',
+      children: [
+        { path: 'sign-in', component: UsersSignInComponent },
+        { path: 'sign-up', component: UsersSignUpComponent },
+        { path: 'confirm', component: UsersConfirmComponent },
+        { path: 'unlock', component: UsersUnlockComponent },
+        { path: 'forgot-password', component: UsersForgotPasswordComponent }
+      ]
+    },
   ]
 }
