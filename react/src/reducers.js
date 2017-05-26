@@ -1,4 +1,4 @@
-import {USERS_SIGN_IN, USERS_SIGN_OUT, SITE_REFRESH} from './actions'
+import {USERS_SIGN_IN, USERS_SIGN_OUT, SITE_REFRESH, SIDEBAR_TOGGLE} from './actions'
 import jwtDecode from 'jwt-decode'
 
 
@@ -27,7 +27,17 @@ const siteInfo = (state={languages:[]}, action) => {
   }
 }
 
+const sideBar = (state={show: false}, action) => {
+  switch(action.type){
+    case SIDEBAR_TOGGLE:
+      return Object.assign({}, {show: !state.show})
+    default:
+      return state;
+  }
+}
+
 export default {
   currentUser,
-  siteInfo
+  siteInfo,
+  sideBar
 }

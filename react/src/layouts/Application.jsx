@@ -1,19 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Container } from 'semantic-ui-react'
+import {Container, Grid} from 'semantic-ui-react'
 
-import Header from '../components/Header'
+import Sidebar from '../components/Sidebar'
 import Footer from '../components/Footer'
+import Header from '../components/Header'
 
 const Widget = ({children}) => (
-  <div>
+  <Sidebar>
     <Header />
     <div style={{marginTop: '3em'}}/>
-    <Container>
-      {children}
+    <Container>      
+      <Grid>{children}</Grid>
     </Container>
     <Footer />
-  </div>
+  </Sidebar>
 )
 
 Widget.propTypes = {

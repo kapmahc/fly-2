@@ -39,13 +39,13 @@ const Bottom = ({links}) => (
   </List>
 )
 
-Bottom.propTypes = {  
+Bottom.propTypes = {
   links: PropTypes.array.isRequired
 }
 
 // -----------------------------------
 const Widget = ({intl}) => (
-  <Segment inverted vertical style={{margin: '4em 0em 0em', padding: '4em 0em'}}>
+  <Segment inverted vertical color="grey" style={{margin: '4em 0em 0em', padding: '4em 0em'}}>
     <Container textAlign='center'>
       <Grid stackable divided>
         <Group
