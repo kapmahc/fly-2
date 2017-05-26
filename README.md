@@ -25,7 +25,7 @@ go run main.go g c # generate config.toml
 
 ```bash
 cd $GOPATH/src/github.com/kapmahc/fly/dashboard
-npm start
+ng serve -p 3000
 ```
 
 ## Create database

@@ -18,8 +18,8 @@ backend:
 
 front:
 	mkdir -pv $(dist)
-	cd dashboard && npm run build
-	cp -rv dashboard/build $(dist)/public
+	cd dashboard && ng build --prod
+	cp -rv dashboard/dist $(dist)/public
 
 
 clean:
