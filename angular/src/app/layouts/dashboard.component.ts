@@ -4,5 +4,5 @@ import { Component } from '@angular/core';
   selector: 'dashboard-layout',
   templateUrl: './dashboard.component.html'
 })
-export class AppComponent {
+export class DashboardLayout {
 }
