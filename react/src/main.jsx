@@ -25,13 +25,13 @@ function main(user) {
   addLocaleData(user.data)
   ReactDOM.render(
     <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <IntlProvider locale={user.locale} messages={user.messages}>
+      <IntlProvider locale={user.locale} messages={user.messages}>
+        <ConnectedRouter history={history}>
           <div>
             {plugins.routes}
           </div>
-        </IntlProvider>        
-      </ConnectedRouter>
+        </ConnectedRouter>
+      </IntlProvider>
     </Provider>,
     document.getElementById('root')
   );

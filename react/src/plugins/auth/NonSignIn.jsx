@@ -17,7 +17,7 @@ const Widget = ({title, children}) => (
         <br />
         <List>
           {
-            NonSignInLinks.map((l, i) => <List.Item as={Link} to={l.href} key={i} icon={l.icon} content={<FormattedMessage id={l.label} />} />)
+            NonSignInLinks.map((l, i) => <List.Item key={i} icon={l.icon} content={<Link to={l.href}><FormattedMessage id={l.label} /></Link>} />)
           }
         </List>
       </Grid.Column>
