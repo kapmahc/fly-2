@@ -24,7 +24,8 @@ class Widget extends Component{
     data.append('email',this.state.email)
     data.append('password',this.state.password)
     data.append('passwordConfirmation',this.state.passwordConfirmation)
-    post('/users/sign-up', data).then((rst) => {
+    post('/install', data).then((rst) => {
+      alert(rst.message)
       push('/users/sign-in')
     }).catch(alert)
   }

@@ -42,7 +42,7 @@ func (p *Plugin) postInstall(c *h2o.Context) error {
 	if err = p.Db.Model(user).UpdateColumn("confirmed_at", time.Now()).Error; err != nil {
 		return err
 	}
-	return c.JSON(http.StatusOK, h2o.H{})
+	return c.JSON(http.StatusOK, h2o.H{"message": p.I18n.T(lng, "success")})
 }
 
 func (p *Plugin) mustDatabaseEmpty(c *h2o.Context) error {

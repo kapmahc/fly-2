@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {injectIntl, intlShape} from 'react-intl'
 import { Segment, Container, Divider, List, Grid, Header } from 'semantic-ui-react'
 
 const Group = ({title, links}) => (
@@ -44,7 +43,7 @@ Bottom.propTypes = {
 }
 
 // -----------------------------------
-const Widget = ({intl}) => (
+const Widget = () => (
   <Segment inverted vertical color="grey" style={{margin: '4em 0em 0em', padding: '4em 0em'}}>
     <Container textAlign='center'>
       <Grid stackable divided>
@@ -93,8 +92,4 @@ const Widget = ({intl}) => (
   </Segment>
 )
 
-Widget.propTypes = {
-    intl: intlShape.isRequired
-}
-
-export default injectIntl(Widget)
+export default Widget
