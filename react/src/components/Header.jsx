@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Menu, Icon } from 'semantic-ui-react'
+import { FormattedMessage } from 'react-intl'
 
 import {signOut, toggleSideBar} from '../actions'
 
@@ -19,7 +20,7 @@ class Widget extends Component {
         <Menu.Item icon onClick={toggleSideBar}>
           <Icon name="content"/>
           &nbsp;
-          <span className="text">Menu</span>
+          <FormattedMessage id="site.subTitle"/>          
         </Menu.Item>
         <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
         <Menu.Item name='messages' active={activeItem === 'messages'} onClick={this.handleItemClick} />
