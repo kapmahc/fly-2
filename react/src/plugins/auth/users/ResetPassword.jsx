@@ -10,27 +10,29 @@ import {Submit} from '../../../form'
 import {post} from '../../../ajax'
 
 class Widget extends Component{
-  state = { email: '' }
+  state = { password: '', passwordConfirmation: '' }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
   handleSubmit = e => {
     e.preventDefault()
-    const {push, action} = this.props
+    const {push, match} = this.props
     var data = new URLSearchParams()
-    data.append('email',this.state.email)
-    post(`/users/${action}`, data).then((rst) => {
+    data.append('token', match.params.token)
+    data.append('password', this.state.password)
+    data.append('passwordConfirmation', this.state.passwordConfirmation)
+    post('/users/reset-password', data).then((rst) => {
       alert(rst.message)
       push('/users/sign-in')
     }).catch(alert)
   }
   render() {
-    const {email} = this.state;
-    const {action} = this.props;
+    const {password, passwordConfirmation} = this.state;
     return (
-      <Layout title={`auth.users.${action}.title`}>
+      <Layout title="auth.users.reset-password.title">
         <Form onSubmit={this.handleSubmit}>
-          <Form.Input name='email' value={email} onChange={this.handleChange} required type="email" label={<FormattedMessage id="attributes.email"/>} />
+          <Form.Input name='password' value={password} onChange={this.handleChange} required type="password" label={<FormattedMessage id="attributes.password"/>} />
+          <Form.Input name='passwordConfirmation' value={passwordConfirmation} onChange={this.handleChange} required type="password" label={<FormattedMessage id="attributes.passwordConfirmation"/>} />
           <Submit />
         </Form>
       </Layout>
@@ -40,8 +42,7 @@ class Widget extends Component{
 
 
 Widget.propTypes = {
-  push: PropTypes.func.isRequired,
-  action: PropTypes.string.isRequired,
+  push: PropTypes.func.isRequired
 }
 
 

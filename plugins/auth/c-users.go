@@ -191,7 +191,7 @@ func (p *Plugin) postUsersResetPassword(c *h2o.Context) error {
 	}
 	p.Db.Model(user).Update("password", p.Hmac.Sum([]byte(fm.Password)))
 	p.Dao.Log(user.ID, c.ClientIP(), p.I18n.T(l, "auth.logs.reset-password"))
-	return c.JSON(http.StatusOK, h2o.H{})
+	return c.JSON(http.StatusOK, h2o.H{"message": p.I18n.T(l, "auth.messages.reset-password-success")})
 }
 
 func (p *Plugin) deleteUsersSignOut(c *h2o.Context) error {
