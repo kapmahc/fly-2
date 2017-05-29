@@ -3,9 +3,9 @@
     <form>
       <div class="form-group">
         <label for="email">{{$t('attributes.email')}}</label>
-        <input v-model="email" type="email" class="form-control" id="email" />
+        <b-form-input v-model="email" type="email" />
       </div>
-      <button v-on:click="onSubmit" type="submit" class="btn btn-primary">{{$t('buttons.submit')}}</button>
+      <b-button v-on:click="onSubmit" variant="primary">{{$t('buttons.submit')}}</b-button>
     </form>
   </non-sign-in-layout>
 </template>

@@ -2,25 +2,25 @@
   <non-sign-in-layout title="auth.users.sign-up.title">
     <form>
       <div class="form-group">
-        <label for="name">{{$t('attributes.fullName')}}</label>
-        <input v-model="name" type="text" class="form-control" id="name" />
+        <label>{{$t('attributes.fullName')}}</label>
+        <b-form-input v-model="name" type="text"/>
       </div>
       <div class="form-group">
         <label for="email">{{$t('attributes.email')}}</label>
-        <input v-model="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" />
-        <small id="emailHelp" class="form-text text-muted">{{$t('helpers.email')}}</small>
+        <b-form-input v-model="email" type="email"/>
+        <small class="form-text text-muted">{{$t('helpers.email')}}</small>
       </div>
       <div class="form-group">
-        <label for="password">{{$t('attributes.password')}}</label>
-        <input v-model="password" type="password" class="form-control" id="password" aria-describedby="passwordHelp"/>
-        <small id="passwordHelp" class="form-text text-muted">{{$t('helpers.password')}}</small>
+        <label>{{$t('attributes.password')}}</label>
+        <b-form-input v-model="password" type="password"/>
+        <small class="form-text text-muted">{{$t('helpers.password')}}</small>
       </div>
       <div class="form-group">
-        <label for="passwordConfirmation">{{$t('attributes.passwordConfirmation')}}</label>
-        <input v-model="passwordConfirmation" type="password" class="form-control" id="passwordConfirmation" aria-describedby="passwordConfirmationHelp" />
-        <small id="passwordConfirmationHelp" class="form-text text-muted">{{$t('helpers.passwordConfirmation')}}</small>
+        <label>{{$t('attributes.passwordConfirmation')}}</label>
+        <b-form-input v-model="passwordConfirmation" type="password"/>
+        <small class="form-text text-muted">{{$t('helpers.passwordConfirmation')}}</small>
       </div>
-      <button v-on:click="onSubmit" type="submit" class="btn btn-primary">{{$t('buttons.submit')}}</button>
+      <b-button v-on:click="onSubmit" variant="primary">{{$t('buttons.submit')}}</b-button>
     </form>
   </non-sign-in-layout>
 </template>

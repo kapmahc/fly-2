@@ -2,11 +2,11 @@
   <non-sign-in-layout title="site.leave-words.new.title">
     <form>
       <div class="form-group">
-        <label for="body">{{$t('attributes.body')}}</label>
-        <textarea v-model="body" class="form-control" id="body" rows="6" aria-describedby="bodyHelp"></textarea>
-        <small id="bodyHelp" class="form-text text-muted">{{$t('site.helpers.leave-word.body')}}</small>
+        <label>{{$t('attributes.body')}}</label>
+        <b-form-input textarea v-model="body" :rows="6" />
+        <small class="form-text text-muted">{{$t('site.helpers.leave-word.body')}}</small>
       </div>
-      <button v-on:click="onSubmit" type="submit" class="btn btn-primary">{{$t('buttons.submit')}}</button>
+      <b-button v-on:click="onSubmit" variant="primary">{{$t('buttons.submit')}}</b-button>
     </form>
   </non-sign-in-layout>
 </template>
