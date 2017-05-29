@@ -1,6 +1,6 @@
-# fly
+# dashboard
 
-> A complete open source e-commerce solution.
+> Frontend of fly by vue.js
 
 ## Build Setup
 
