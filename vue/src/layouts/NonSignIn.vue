@@ -7,7 +7,7 @@
         <slot />
         <div class="list-group block">
           <router-link v-if="l" class="list-group-item list-group-item-action" v-for="l in links" v-bind:key="l" :to="{name: l.href}">
-            <material-icon :name="l.icon" />&nbsp;{{$t(`${l.href}.title`)}}
+            <fa-icon :name="l.icon" />&nbsp;{{$t(`${l.href}.title`)}}
           </router-link>
         </div>
       </div>

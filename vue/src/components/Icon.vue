@@ -1,14 +1,9 @@
 <template>
-  <i class="material-icons">{{name}}</i>
+  <i :class="`fa fa-${name} ${size ? 'fa'+size : ''}`"></i>
 </template>
 
 <script>
-
 export default {
-  props: ['name'],
-  data () {
-    return {
-    }
-  }
+  props: ['name', 'size']
 }
 </script>
