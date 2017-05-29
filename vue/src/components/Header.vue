@@ -1,28 +1,20 @@
-<template>
-  <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <router-link class="navbar-brand" :to="{name: 'site.home'}">
+<template><b-navbar toggleable toggle-breakpoint="md" type="inverse" variant="inverse" fixed="top">
+    <b-nav-toggle target="navbarCollapse"></b-nav-toggle>
+    <b-link class="navbar-brand" :to="{name: 'site.home'}">
       {{$t('site.subTitle')}}
-    </router-link>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <router-link class="nav-link" :to="{name: 'site.home'}">
-            {{$t('header.home')}}
-            <span class="sr-only">(current)</span>
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
+    </b-link>
+    <b-collapse is-nav id="navbarCollapse">
+      <b-nav is-nav-bar>
+        <b-nav-item>Support</b-nav-item>
+        <b-nav-item>Docs</b-nav-item>
+        <b-nav-item>Contact Us</b-nav-item>
+      </b-nav>
+      <b-nav is-nav-bar class="ml-auto">
         <LanguageBar />
         <PersonalBar />
-      </ul>
-      <SearchForm />
-    </div>
-  </nav>
+      </b-nav>
+    </b-collapse>
+  </b-navbar>
 </template>
 
 <script>

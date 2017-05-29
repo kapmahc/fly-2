@@ -1,8 +1,8 @@
-// import 'jquery'
-// import 'bootstrap'
-
 import Vue from 'vue'
 Vue.config.productionTip = false
+
+import BootstrapVue from 'bootstrap-vue'
+Vue.use(BootstrapVue)
 
 import './main.css'
 import './components'
