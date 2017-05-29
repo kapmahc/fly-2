@@ -16,15 +16,15 @@ backend:
 	go build -ldflags "-s -w -X ${pkg}.Version=${VERSION} -X '${pkg}.BuildTime=${BUILD_TIME}' -X '${pkg}.AuthorName=${AUTHOR_NAME}' -X ${pkg}.AuthorEmail=${AUTHOR_EMAIL} -X '${pkg}.Copyright=${COPYRIGHT}' -X '${pkg}.Usage=${USAGE}'" -o ${dist}/fly main.go
 	-cp -rv locales db templates $(dist)/
 
-front:
+react:
 	mkdir -pv $(dist)
-	cd dashboard && ng build --prod
-	cp -rv dashboard/dist $(dist)/public
+	cd react && npm run build
+	cp -rv react/build $(dist)/public
 
 
 clean:
 	-rm -rv $(dist) dist.tar.bz2
-	-rm -rv dashboard/dist
+	-rm -rv react/build
 
 
 init:

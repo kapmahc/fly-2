@@ -2,6 +2,14 @@
 
 A complete open source e-commerce solution for the Go language(STILL IN DEVELOPMENT).
 
+## Install go
+```
+zsh < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+gvm install go1.8.3 -B
+gvm use go1.8.3 --default
+go get -u github.com/kardianos/govendor
+```
+
 ## Usage
 
 ```bash
@@ -25,7 +33,7 @@ go run main.go g c # generate config.toml
 
 ```bash
 cd $GOPATH/src/github.com/kapmahc/fly/dashboard
-ng serve -p 3000
+npm start
 ```
 
 ## Create database
