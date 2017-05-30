@@ -16,12 +16,12 @@
       </div>
       <div class="form-group">
         <label>{{$t('attributes.password')}}</label>
-        <input v-model="password" type="password"/>
+        <b-form-input v-model="password" type="password"/>
         <small class="form-text text-muted">{{$t('helpers.password')}}</small>
       </div>
       <div class="form-group">
         <label>{{$t('attributes.passwordConfirmation')}}</label>
-        <input v-model="passwordConfirmation" type="password"/>
+        <b-form-input v-model="passwordConfirmation" type="password"/>
         <small class="form-text text-muted">{{$t('helpers.passwordConfirmation')}}</small>
       </div>
       <b-button v-on:click="onSubmit" variant="primary">{{$t('buttons.submit')}}</b-button>

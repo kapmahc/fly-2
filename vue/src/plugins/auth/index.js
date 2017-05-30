@@ -6,7 +6,7 @@ import ResetPassword from './users/ResetPassword'
 export default {
   dashboard (user) {
     var items = []
-    if (user.admin) {
+    if (user) {
       items.push({
         label: 'auth.dashboard.title',
         icon: 'personal',
@@ -18,6 +18,7 @@ export default {
         ]
       })
     }
+    return items
   },
   routes: [
     { path: '/users/sign-in', name: 'auth.users.sign-in', component: UsersSignIn },

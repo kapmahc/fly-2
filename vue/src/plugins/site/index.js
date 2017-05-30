@@ -6,7 +6,7 @@ import NewLeaveWord from './leave-words/New'
 export default {
   dashboard (user) {
     var items = []
-    if (user.admin) {
+    if (user && user.admin) {
       items.push({
         label: 'site.dashboard.title',
         icon: 'settings',
@@ -17,6 +17,7 @@ export default {
         ]
       })
     }
+    return items
   },
   routes: [
     { path: '/', name: 'site.home', component: Home },
