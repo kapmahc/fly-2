@@ -6,7 +6,7 @@
         <nav class="col-md-3 bg-faded block">
           <b-nav vertical pills :key="i" v-for="(d, i) in dashboard">
             <b-nav-item disabled>{{$t(d.label)}}</b-nav-item>
-            <b-nav-item v-if="l" :key="j" v-for="(l, j) in d.items">
+            <b-nav-item v-if="l" :to="{name: l.href}" :key="j" v-for="(l, j) in d.items">
               {{$t(`${l.href}.title`)}}
             </b-nav-item>
           </b-nav>

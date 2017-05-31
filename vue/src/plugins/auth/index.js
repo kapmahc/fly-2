@@ -26,6 +26,10 @@ export default {
     { path: '/users/forgot-password', name: 'auth.users.forgot-password', component: {template: '<EmailForm action="forgot-password" />', components: {EmailForm}} },
     { path: '/users/confirm', name: 'auth.users.confirm', component: {template: '<EmailForm action="confirm" />', components: {EmailForm}} },
     { path: '/users/unlock', name: 'auth.users.unlock', component: {template: '<EmailForm action="unlock" />', components: {EmailForm}} },
-    { path: '/users/reset-password/:token', name: 'auth.users.reset-password', component: ResetPassword }
+    { path: '/users/reset-password/:token', name: 'auth.users.reset-password', component: ResetPassword },
+
+    { path: '/users/logs', name: 'auth.users.logs', component: ResetPassword },
+    { path: '/users/info', name: 'auth.users.info', component: ResetPassword },
+    { path: '/users/change-password', name: 'auth.users.change-password', component: ResetPassword }
   ]
 }
