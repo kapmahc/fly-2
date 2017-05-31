@@ -1,16 +1,16 @@
 <template>
   <footer>
-    <p class="float-right">
-      {{$t('footer.other-languages')}}:
-      <button class="btn btn-sm btn-link" v-bind:key="l" v-on:click="setLocale(l)" v-for="l in languages">
-        {{$t(`languages.${l}`)}}
-      </button>
-    </p>
-    <p>
-      &copy; {{ $t("site.copyright") }}
-      &middot; <a href="#">Privacy</a>
-      &middot; <a href="#">Terms</a>
-    </p>
+    <el-row>
+      <el-col :offset="1" :span="22">
+        &copy; {{ $t("site.copyright") }}
+        &middot; <a href="#">Privacy</a>
+        &middot; <a href="#">Terms</a>
+        {{$t('footer.other-languages')}}:
+        <el-button type="text" v-bind:key="l" v-on:click="setLocale(l)" v-for="l in languages">
+          {{$t(`languages.${l}`)}}
+        </el-button>
+      </el-col>
+    </el-row>
   </footer>
 </template>
 

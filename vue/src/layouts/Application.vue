@@ -1,11 +1,11 @@
 <template>
-  <div class="body">
+  <div>
     <app-header />
-    <div class="container">
+    <el-row>
       <slot />
-      <hr />
-      <app-footer />
-    </div>
+    </el-row>
+    <hr />
+    <app-footer />
   </div>
 </template>
 
@@ -24,10 +24,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.body {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-}
-</style>

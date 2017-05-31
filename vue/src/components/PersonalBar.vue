@@ -1,25 +1,23 @@
 <template>
-  <b-nav-item-dropdown right v-if="user">
-    <template slot="text">
+  <el-submenu index="personalBar" v-if="user">
+    <template slot="title">
       {{$t('personal-bar.welcome', {name: user.name})}}
     </template>
-    <b-dropdown-item :to="{name: 'site.dashboard'}">
+    <el-menu-item index="dashboard">
       {{$t('personal-bar.dashboard')}}
-    </b-dropdown-item>
-    <b-dropdown-divider />
-    <b-dropdown-item v-on:click="onSignOut">
+    </el-menu-item>
+    <el-menu-item index="sign-out" v-on:click="onSignOut">
       {{$t('personal-bar.sign-out')}}
-    </b-dropdown-item>
-  </b-nav-item-dropdown>
-  <b-nav-item-dropdown right v-else="user">
-    <template slot="text">
+    </el-menu-item>
+  </el-submenu>
+  <el-submenu index="personalBar" v-else>
+    <template slot="title">
       {{$t('personal-bar.sign-in-or-up')}}
     </template>
-    <b-dropdown-item v-if="l" v-for="(l, i) in links" :key="i" :to="{name: l.href}">
+    <el-menu-item :index="`personalBar-${l}`"  v-if="l" v-for="(l, i) in links" :key="i" :to="{name: l.href}">
       {{$t(`${l.href}.title`)}}
-    </b-dropdown-item>
-    <b-dropdown-divider v-else />
-  </b-nav-item-dropdown>
+    </el-menu-item>
+  </el-submenu>
 </template>
 
 <script>
